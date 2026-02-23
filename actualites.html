@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LTD Grove Street</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Underline animé */
+    nav a {
+      position: relative;
+      color: white; /* texte blanc */
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #4f46e5;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #4338ca; /* indigo-700 */
+    }
+
+    /* Ombre + fond sombre au scroll */
+    .nav-shadow {
+      box-shadow: 0 2px 10px rgb(0 0 0 / 0.2);
+      backdrop-filter: saturate(180%) blur(10px);
+      background-color: rgba(17, 24, 39, 0.95); /* gris très foncé/indigo */
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 shadow-md transition-colors duration-300">
+
+<header id="header" 
+  class="fixed top-0 left-0 w-full z-50 
+         bg-gradient-to-r from-gray-900/80 via-indigo-900/80 to-gray-900/80 
+         shadow-md transition-colors duration-300">
+  <nav class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 md:px-12 font-sans">
+    <!-- Logo + Nom -->
+    <a href="#" class="flex items-center gap-3">
+      <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-10 h-10 rounded shadow-md" />
+      <span class="text-indigo-400 text-2xl font-extrabold tracking-tight hover:text-indigo-300 transition duration-300">
+        LTD Grove Street
+      </span>
+    </a>
+
+    <!-- Menu Desktop -->
+    <nav class="hidden md:flex items-center justify-between gap-6 text-sm font-semibold text-white">
+      <ul class="flex items-center gap-6">
+        <li><a href="index.html" class="hover:text-indigo-300 transition">Accueil</a></li>
+        <li><a href="catalogue.html" class="hover:text-indigo-300 transition">Catalogue</a></li>
+        <li><a href="stations.html" class="hover:text-indigo-300 transition">Stations Essence</a></li>
+        <li><a href="avis.html" class="hover:text-indigo-300 transition">Avis Clients</a></li>
+        <li><a href="equipe.html" class="hover:text-indigo-300 transition">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300 transition">Actualités</a></li>
+        <li><a href="contact.html" class="hover:text-indigo-300 transition">Contact</a></li>
+      </ul>
+      <!-- Bouton Intranet -->
+      <a href="candidature.html"
+         class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold text-sm py-2 px-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out whitespace-nowrap ml-6">
+        📝 Poster sa candidature
+      </a>
+    </nav>
+
+<!-- Hamburger mobile -->
+<button id="burger" class="md:hidden focus:outline-none relative z-50">
+  <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2"
+       viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</button>
+</nav>
+
+<!-- Menu Mobile -->
+<div id="mobileMenu" class="hidden md:hidden mx-4 mt-2 px-4 py-4 rounded-xl shadow-xl backdrop-blur-md border border-white/30 bg-white/10 text-white">
+  <ul class="flex flex-col gap-2 text-base font-medium text-center">
+    <li><a href="index.html" class="block py-1.5 rounded-lg hover:bg-white/20 transition">🏠 Accueil</a></li>
+    <li><a href="catalogue.html" class="block py-1.5 rounded-lg hover:bg-white/20 transition">📖 Catalogue</a></li>
+    <li><a href="stations.html" class="block py-1.5 rounded-lg hover:bg-white/20 transition">⛽ Stations Essence</a></li>
+    <li><a href="avis.html" class="block py-1.5 rounded-lg hover:bg-white/20 transition">⭐ Avis Clients</a></li>
+    <li><a href="equipe.html" class="block py-1.5 rounded-lg hover:bg-white/20 transition">👥 Notre Équipe</a></li>
+    <li><a href="actualites.html" class="block py-1.5 rounded-lg hover:bg-white/20 transition">📰 Actualités</a></li>
+    <li><a href="contact.html" class="block py-1.5 rounded-lg hover:bg-white/20 transition">📩 Contact</a></li>
+    <li><a href="candidature.html" class="block py-1.5 rounded-lg hover:bg-white/20 transition">📝 Poster sa candidature</a></li>
+  </ul>
+</div>
+</header>
+
+<script>
+  // Toggle menu mobile
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  burger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Ombre barre au scroll
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header.classList.add('nav-shadow');
+    } else {
+      header.classList.remove('nav-shadow');
+    }
+  });
+</script>
+</html>
+
+  <!-- Contenu principal -->
+  <main class="mt-32 px-4 max-w-7xl mx-auto">
+    <!-- Titre -->
+  <main class="mt-32 px-4">
+<h1 class="text-4xl md:text-5xl font-extrabold text-center mb-14 text-white tracking-tight">
+  Actualités 
+  <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+    du LTD
+  </span>
+</h1>
+
+<!-- Barre de recherche améliorée style "LTD Grove Street" -->
+<section class="max-w-6xl mx-auto px-6 py-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/20 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 mb-16 transition">
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="🔍 Rechercher une actualité..."
+    class="flex-1 min-w-0 p-4 rounded-xl border border-white/30 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-500 backdrop-blur-sm transition shadow-md hover:shadow-lg"
+    aria-label="Recherche d'avis"
+  />
+</section>
+
+    <!-- Liste actualités -->
+    <section id="newsList" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Actualités injectées par JS -->
+
+    </section>
+
+    <!-- Message si aucune actualité -->
+    <p id="noResultsMessage" class="hidden text-center text-gray-500 dark:text-gray-400 text-lg mt-12">
+      Aucun résultat trouvé pour votre recherche.
+    </p>
+
+  </main>
+
+  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
+    &copy; 2025 LTD Grove Street. Tous droits réservés.
+  </footer>
+
+  <p id="noResultsMessage" class="text-center text-gray-400 mt-12 hidden">
+    Aucune actualité ne correspond à votre recherche.
+  </p>
+</section>
+
+  <div id="newsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Les cartes seront injectées ici -->
+  </div>
+
+  <p id="noResultsMessage" class="text-center text-gray-400 mt-12 hidden">
+    Aucune actualité ne correspond à votre recherche.
+  </p>
+</section>
+
+<script>
+  const news = [
+    {
+      id: 1,
+      title: "Bouteille de Plongé - Nouveauté Exclusive !",
+      date: "2025-07-25",
+      content: "Ne ratez pas cette occasion unique de vous équiper avec du matériel de qualité, disponible chez nous. Une fois le stock écoulé… il faudra attendre la prochaine vague 🌊",
+      tags: ["Nouveauté", "Bouteille de Plongée"],
+      image: "https://i.goopics.net/5k4q4c.png"
+    },
+    {
+      id: 2,
+      title: "Promotion Exceptionnelle !",
+      date: "2025-08-11",
+      content: "Vous êtes à la recherche de bonnes affaires ? Ne cherchez plus, le LTD Grove Street est là pour vous offrir des promotions qui font plaisir au porte-monnaie et au cœur !",
+      tags: ["Promotion", "Ofre UNIQUE"],
+      image: "https://i.goopics.net/7l75to.png"
+    },
+    {
+      id: 3,
+      title: "Nouveauté - Palette de Maquillage",
+      date: "2025-08-07",
+      content: "Découvrez notre toute nouvelle gamme de palettes de maquillage pour celles et ceux qui veulent briller sans attendre un événement spécial. 💅",
+      tags: ["Beauty", "New", "Maquillage"],
+      image: "https://i.goopics.net/17wm7x.png"
+    },
+  ];
+</script>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const newsList = document.getElementById('newsList');
+  const noResultsMessage = document.getElementById('noResultsMessage');
+
+  function formatDate(dateString) {
+    return new Date(dateString).toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'numeric' });
+  }
+
+  function displayNews(items) {
+    newsList.innerHTML = '';
+    if (items.length === 0) {
+      noResultsMessage.classList.remove('hidden');
+      return;
+    }
+    noResultsMessage.classList.add('hidden');
+
+    items.forEach(item => {
+      const card = document.createElement('article');
+      card.className = `bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-6 border border-white/10 transition transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer flex flex-col`;
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.title}" class="rounded-lg mb-6 object-cover w-full h-44 transition-transform duration-500 hover:scale-105" />
+        <h3 class="text-indigo-400 font-bold text-xl mb-3">${item.title}</h3>
+        <time datetime="${item.date}" class="italic text-indigo-300 text-sm mb-4 block">${formatDate(item.date)}</time>
+        <p class="text-gray-300 flex-grow">${item.content}</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          ${item.tags.map(tag => `
+            <span class="text-xs font-semibold bg-transparent backdrop-blur-sm border border-white/20 text-indigo-400 rounded-lg px-3 py-1 select-none transition transform hover:-translate-y-0.5 hover:shadow-lg cursor-default">${tag}</span>
+          `).join('')}
+        </div>`;
+      newsList.appendChild(card);
+    });
+  }
+
+  displayNews(news);
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase().trim();
+    const filtered = news.filter(n =>
+      n.title.toLowerCase().includes(q) ||
+      n.content.toLowerCase().includes(q) ||
+      n.tags.some(tag => tag.toLowerCase().includes(q))
+    );
+    displayNews(filtered);
+  });
+</script>
